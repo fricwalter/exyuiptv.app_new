@@ -15,8 +15,8 @@ BLOG_INDEX = DIST / "blog" / "index.html"
 SITEMAP = DIST / "sitemap-0.xml"
 SITE = "https://exyuiptv.app"
 
-# User asked for nine posts. Leave the time-sensitive Bosna World Cup article imported but unpublished.
 PUBLISH_ORDER = [
+    "bosna-svjetsko-prvenstvo-2026-live-stream-iptv",
     "ex-yu-iptv-sad-2026-new-york-chicago",
     "ex-yu-iptv-kanada-2026-toronto-vancouver",
     "ex-yu-iptv-skandinavija-2026-svedska-norveska-danska",
@@ -256,9 +256,10 @@ def build_card(post: Post) -> str:
 def inject_cards(posts: list[Post]) -> None:
     text = BLOG_INDEX.read_text(encoding="utf-8")
     marker = '<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">'
-    insertion = marker + " " + "".join(build_card(post) for post in posts)
-    if any(f'/blog/{post.slug}/' in text for post in posts):
+    missing_posts = [post for post in posts if f'/blog/{post.slug}/' not in text]
+    if not missing_posts:
         return
+    insertion = marker + " " + "".join(build_card(post) for post in missing_posts)
     text = text.replace(marker, insertion, 1)
     BLOG_INDEX.write_text(text, encoding="utf-8")
 
