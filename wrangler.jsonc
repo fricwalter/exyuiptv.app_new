@@ -1,5 +1,6 @@
 {
   "name": "exyuiptv-app-new",
+  "account_id": "21b058f792197fa0a48926aa867f845e",
   "main": "_worker.js",
   "compatibility_date": "2026-04-03",
   "assets": {
