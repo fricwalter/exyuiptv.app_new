@@ -1,0 +1,9 @@
+{
+  "name": "exyuiptv-app-new",
+  "main": "_worker.js",
+  "compatibility_date": "2026-04-03",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS"
+  }
+}
