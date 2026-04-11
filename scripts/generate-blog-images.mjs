@@ -11,7 +11,7 @@ const BLOG_DIR = path.join(DIST, "blog");
 const BLOG_IMAGE_DIR = path.join(DIST, "images", "blog");
 const CONTENT_DIR = path.join(ROOT, "content", "blog-import-2026-04");
 const SITE_BASE = "https://exyuiptv.app";
-const MODEL = "gemini-2.5-flash-image";
+const MODEL = "gemini-3.1-flash-image-preview";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
 const RATE_LIMIT_MS = 5000;
 const FORCE_REGENERATE = process.env.FORCE_REGENERATE === "1";
