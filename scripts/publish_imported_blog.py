@@ -36,16 +36,27 @@ class Post:
     description: str
     publish_date: str
     tags: list[str]
+    cover_image: str
+    cover_image_alt: str
     body: str
 
     @property
     def category(self) -> str:
-        tag = self.tags[0] if self.tags else "Novo"
-        if "sport" in tag:
+        joined = " ".join(self.tags).lower()
+        if "sport" in joined or "premier league" in joined or "derbi" in joined:
             return "Sport"
-        if "apple tv" in tag or "smart tv" in tag or "samsung" in tag or "lg" in tag:
+        if "apple tv" in joined or "smart tv" in joined or "samsung" in joined or "lg" in joined:
             return "Uredaji"
-        if "sad" in tag or "kanada" in tag or "skandinavija" in tag or "australija" in tag:
+        if (
+            "sad" in joined
+            or "kanada" in joined
+            or "skandinavija" in joined
+            or "australija" in joined
+            or "njemacka" in joined
+            or "svicarska" in joined
+            or "austrija" in joined
+            or "dijaspora" in joined
+        ):
             return "Dijaspora"
         return "Savjeti"
 
@@ -92,6 +103,8 @@ def parse_frontmatter(text: str) -> Post:
         description=str(data["description"]),
         publish_date=str(data["publishDate"]),
         tags=list(data.get("tags", [])),
+        cover_image=str(data.get("coverImage", "/images/hero-bg-compressed.webp")),
+        cover_image_alt=str(data.get("coverImageAlt", data["title"])),
         body=body.strip(),
     )
 
@@ -135,6 +148,17 @@ def render_markdown(body: str) -> str:
         if list_open:
             out.append("</ul>")
             list_open = False
+        image_match = re.fullmatch(r"!\[([^\]]*)\]\(([^)]+)\)", stripped)
+        if image_match:
+            alt = html.escape(image_match.group(1))
+            src = html.escape(image_match.group(2), quote=True)
+            out.append(
+                '<figure class="my-8 overflow-hidden rounded-2xl border border-stone-700 bg-stone-800/60">'
+                f'<img src="{src}" alt="{alt}" loading="lazy" class="w-full h-auto object-cover">'
+                f'<figcaption class="px-4 py-3 text-sm text-gray-400">{alt}</figcaption>'
+                "</figure>"
+            )
+            continue
         if stripped.startswith("# "):
             continue
         if stripped.startswith("## "):
@@ -163,6 +187,11 @@ def build_article_html(post: Post, related: list[Post]) -> str:
     title = html.escape(f"{post.title} | EXYU IPTV Blog")
     description = html.escape(post.description)
     canonical = f"{SITE}/blog/{post.slug}/"
+    cover_image_url = (
+        post.cover_image
+        if post.cover_image.startswith("http")
+        else f"{SITE}{post.cover_image}"
+    )
     before = re.sub(r"<title>.*?</title>", f"<title>{title}</title>", before, count=1)
     before = re.sub(r'<meta name="title" content=".*?">', f'<meta name="title" content="{title}">', before, count=1)
     before = re.sub(r'<meta name="description" content=".*?">', f'<meta name="description" content="{description}">', before, count=1)
@@ -170,9 +199,11 @@ def build_article_html(post: Post, related: list[Post]) -> str:
     before = re.sub(r'<meta property="og:url" content=".*?">', f'<meta property="og:url" content="{canonical}">', before, count=1)
     before = re.sub(r'<meta property="og:title" content=".*?">', f'<meta property="og:title" content="{title}">', before, count=1)
     before = re.sub(r'<meta property="og:description" content=".*?">', f'<meta property="og:description" content="{description}">', before, count=1)
+    before = re.sub(r'<meta property="og:image" content=".*?">', f'<meta property="og:image" content="{cover_image_url}">', before, count=1)
     before = re.sub(r'<meta property="twitter:url" content=".*?">', f'<meta property="twitter:url" content="{canonical}">', before, count=1)
     before = re.sub(r'<meta property="twitter:title" content=".*?">', f'<meta property="twitter:title" content="{title}">', before, count=1)
     before = re.sub(r'<meta property="twitter:description" content=".*?">', f'<meta property="twitter:description" content="{description}">', before, count=1)
+    before = re.sub(r'<meta property="twitter:image" content=".*?">', f'<meta property="twitter:image" content="{cover_image_url}">', before, count=1)
 
     related_html = "".join(
         f'<li><a href="/blog/{r.slug}/" class="block p-4 rounded-xl border border-stone-700 hover:border-blue-500 hover:bg-stone-700 transition-colors">'
@@ -183,9 +214,9 @@ def build_article_html(post: Post, related: list[Post]) -> str:
 
     content = f"""
 <main class="flex-grow">
-  <div class="pt-20 min-h-screen" style="background: rgb(28 25 23);">
+    <div class="pt-20 min-h-screen" style="background: rgb(28 25 23);">
     <div class="w-full h-56 bg-gradient-to-br from-blue-700 via-purple-700 to-blue-900 relative overflow-hidden flex items-center justify-center">
-      <img src="/images/hero-bg-compressed.webp" alt="{html.escape(post.title)}" width="1200" height="224" class="absolute inset-0 w-full h-full object-cover opacity-70">
+      <img src="{html.escape(post.cover_image)}" alt="{html.escape(post.cover_image_alt)}" width="1200" height="224" class="absolute inset-0 w-full h-full object-cover opacity-70">
       <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10"></div>
     </div>
     <article class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -241,7 +272,7 @@ def build_card(post: Post) -> str:
         '<article class="group bg-stone-800 rounded-2xl overflow-hidden border border-stone-700 hover:border-blue-500 '
         'hover:shadow-xl hover:-translate-y-1 transition-all duration-300">'
         '<div class="h-48 bg-gradient-to-br from-blue-600 to-purple-700 overflow-hidden relative flex items-center justify-center">'
-        f'<img src="/images/hero-bg-compressed.webp" alt="{html.escape(post.title)}" loading="lazy" width="480" height="192" '
+        f'<img src="{html.escape(post.cover_image)}" alt="{html.escape(post.cover_image_alt)}" loading="lazy" width="480" height="192" '
         'class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">'
         '</div><div class="p-6">'
         f'<div class="flex items-center gap-3 mb-3"><span class="px-3 py-1 bg-blue-900/60 text-blue-300 text-xs font-semibold rounded-full">{html.escape(post.category)}</span>'
@@ -256,11 +287,25 @@ def build_card(post: Post) -> str:
 def inject_cards(posts: list[Post]) -> None:
     text = BLOG_INDEX.read_text(encoding="utf-8")
     marker = '<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">'
-    missing_posts = [post for post in posts if f'/blog/{post.slug}/' not in text]
-    if not missing_posts:
+    start = text.find(marker)
+    if start == -1:
         return
-    insertion = marker + " " + "".join(build_card(post) for post in missing_posts)
-    text = text.replace(marker, insertion, 1)
+    after_start = start + len(marker)
+    end = text.find("</div> </div> </div>", after_start)
+    if end == -1:
+        return
+
+    grid_inner = text[after_start:end]
+    article_blocks = re.findall(r"<article[\s\S]*?</article>", grid_inner)
+    imported_slugs = {post.slug for post in posts}
+    preserved_blocks = [
+        block
+        for block in article_blocks
+        if not any(f'/blog/{slug}/' in block for slug in imported_slugs)
+    ]
+
+    rebuilt_inner = " " + "".join(build_card(post) for post in posts) + "".join(preserved_blocks)
+    text = text[:after_start] + rebuilt_inner + text[end:]
     BLOG_INDEX.write_text(text, encoding="utf-8")
 
 
@@ -281,10 +326,11 @@ def update_sitemap(posts: list[Post]) -> None:
 
 def main() -> None:
     posts: list[Post] = []
-    for slug in PUBLISH_ORDER:
-        md_path = IMPORT_DIR / f"{slug}.md"
+    md_paths = sorted(IMPORT_DIR.glob("*.md"))
+    for md_path in md_paths:
         post = parse_frontmatter(md_path.read_text(encoding="utf-8"))
         posts.append(post)
+    posts.sort(key=lambda post: (post.publish_date, post.slug), reverse=True)
     for idx, post in enumerate(posts):
         related = [p for p in posts if p.slug != post.slug]
         html_text = build_article_html(post, related[idx:] + related[:idx])

@@ -8,6 +8,8 @@ tags:
   - "iptv epg dijaspora"
   - "catch up tv ex yu kanali"
   - "snimanje iptv utakmica i serija"
+coverImage: "/images/blog/epg-catch-up-snimanje-ex-yu-iptv-2026.webp"
+coverImageAlt: "EPG, catch up i snimanje EX YU IPTV 2026: Kako izvuci maksimum iz liste kanala"
 ---
 
 # EPG, catch up i snimanje EX YU IPTV 2026: Kako izvuci maksimum iz liste kanala
@@ -38,7 +40,7 @@ EPG, catch up i snimanje EX YU IPTV 2026 vrijede tek kada su povezani s konkretn
 
 ## CTA: kako izvuci maksimum iz liste kanala
 
-Prvo pregledaj TV listu kanala, zatim procitaj Bosna sportski vodic i Apple TV clanak, pa tek onda finaliziraj paket i uredaj.
+Prvo pregledaj TV listu kanala, zatim procitaj Bosna sportski vodic i premium streaming uredaj clanak, pa tek onda finaliziraj paket i uredaj.
 
 Tako odmah znas kako iskoristiti EPG, catch up i snimanje u svom konkretnom setupu.
 
@@ -48,25 +50,24 @@ Tako odmah znas kako iskoristiti EPG, catch up i snimanje u svom konkretnom setu
 
 - [TV lista kanala](/tv-lista-kanala)
 - [Bosna Svjetsko prvenstvo 2026](/blog/bosna-svjetsko-prvenstvo-2026-live-stream-iptv)
-- [Apple TV EX YU IPTV](/blog/apple-tv-ex-yu-iptv-2026-podesavanje)
-- [Osnovni paket](/osnovni-paket)
+- [premium streaming uredaj EX YU IPTV](/blog/apple-tv-ex-yu-iptv-2026-podesavanje)
 
 ### Vanjski linkovi
 
 - [Kodi PVR Guide](https://kodi.wiki/view/PVR)
 - [Google TV Help](https://support.google.com/googletv/)
-- [Apple TV User Guide](https://support.apple.com/guide/tv/)
+- [uputstvo za premium streaming uredaj](https://support.apple.com/guide/tv/)
 
 ## FAQ
 
-### Sta je najvaznije kod EPG i catch up funkcija?
+### Sta je najvaznije kod EPG i catch up funkcija
 
 Najvaznije je da su povezane s tvojim favorites grupama i da odgovaraju nacinu na koji stvarno gledas TV.
 
-### Da li snimanje ima smisla za sport?
+### Da li snimanje ima smisla za sport
 
 Da, posebno kada ne mozes gledati live ili zelis kasnije pregledati utakmicu i analizu.
 
-### Koji je sljedeci korak ako zelim ovo koristiti svaki dan?
+### Koji je sljedeci korak ako zelim ovo koristiti svaki dan
 
 Pogledaj listu kanala, slozi favorites po navikama i provjeri kako tvoj player radi s EPG i catch up funkcijama.
