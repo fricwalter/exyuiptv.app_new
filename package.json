@@ -6,7 +6,7 @@
   "scripts": {
     "generate:blog-images": "node scripts/generate-blog-images.mjs",
     "dev": "wrangler dev",
-    "deploy": "wrangler deploy"
+    "deploy": "wrangler deploy && node scripts/indexnow.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.68.1"
