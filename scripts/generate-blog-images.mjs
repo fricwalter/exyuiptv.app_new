@@ -28,6 +28,146 @@ const GLOBAL_PROMPT_SUFFIX =
 
 const POSTS = [
   {
+    slug: "bosna-sp-2026-gledanje-iz-europe",
+    type: "new",
+    prompt:
+      "Use case: photorealistic-natural\n" +
+      "Asset type: premium diaspora sports blog hero image\n" +
+      "Primary request: Bosnian diaspora family watching World Cup football from Europe through IPTV\n" +
+      "Scene/background: cozy modern European apartment, evening, large wall-mounted TV showing a football pitch from a distance\n" +
+      "Subject: TV showing abstract World Cup football match with no readable graphics, living-room gathering implied through hands and remote controls but no faces visible\n" +
+      "Style/medium: cinematic editorial lifestyle photography\n" +
+      "Composition/framing: wide 16:9, TV centered with premium living-room context\n" +
+      "Lighting/mood: emotional, warm, match-night energy, premium realistic\n" +
+      "Constraints: no text, no logos, no watermark, no visible faces, no readable scoreboard",
+  },
+  {
+    slug: "hrvatska-srbija-sp-2026-exyu-diaspora",
+    type: "new",
+    prompt:
+      "Use case: photorealistic-natural\n" +
+      "Asset type: premium diaspora sports blog hero image\n" +
+      "Primary request: EX-YU diaspora watching a Croatia vs Serbia football match through IPTV abroad\n" +
+      "Scene/background: modern European apartment living room, evening match-day atmosphere, premium TV setup\n" +
+      "Subject: large television showing intense abstract football action on a pitch, no readable team branding, remote and match-night snacks on table\n" +
+      "Style/medium: cinematic editorial sports-lifestyle photography\n" +
+      "Composition/framing: wide 16:9, TV as focal point, premium home viewing setup\n" +
+      "Lighting/mood: tense, energetic, warm evening sports atmosphere\n" +
+      "Constraints: no text, no logos, no watermark, no visible faces, no flag text, no team colors identifiable",
+  },
+  {
+    slug: "ex-yu-iptv-velika-britanija-2026-balkanski-kanali",
+    type: "new",
+    prompt:
+      "Use case: photorealistic-natural\n" +
+      "Asset type: premium diaspora blog hero image\n" +
+      "Primary request: Balkan diaspora in the UK watching EX-YU IPTV channels in a London-style apartment\n" +
+      "Scene/background: stylish British apartment interior with subtle red-brick architecture visible outside, rainy evening atmosphere\n" +
+      "Subject: television showing Balkan channel programming, cozy premium living room with tasteful UK home interior details, no readable channel names on screen\n" +
+      "Style/medium: editorial interior lifestyle photography\n" +
+      "Composition/framing: wide 16:9, balance British exterior cues with warm Balkan home streaming interior\n" +
+      "Lighting/mood: warm, cozy, premium, realistic British evening ambience\n" +
+      "Constraints: no text, no logos, no watermark, no visible faces, no readable screen content",
+  },
+  {
+    slug: "google-tv-chromecast-iptv-balkanski-kanali-2026",
+    type: "new",
+    prompt:
+      "Use case: photorealistic-natural\n" +
+      "Asset type: premium tech blog hero image\n" +
+      "Primary request: smart streaming dongle setup for Balkan IPTV on a modern TV\n" +
+      "Scene/background: clean contemporary living room with premium entertainment setup\n" +
+      "Subject: small puck-shaped streaming device and remote control on a media console, large television in background showing abstract colorful content tiles, no readable interface text\n" +
+      "Style/medium: editorial consumer-tech photography\n" +
+      "Composition/framing: wide 16:9, device and TV both visible, tech-review blog style\n" +
+      "Lighting/mood: clean, modern, polished, premium product atmosphere\n" +
+      "Constraints: no text, no logos, no watermark, no visible faces, no brand marks on device",
+  },
+  {
+    slug: "vpn-i-iptv-exyu-kanali-da-li-treba",
+    type: "new",
+    prompt:
+      "Use case: photorealistic-natural\n" +
+      "Asset type: premium editorial tech blog hero image\n" +
+      "Primary request: VPN and streaming concept for online privacy and IPTV in Europe\n" +
+      "Scene/background: modern home office or living room desk with laptop and smartphone\n" +
+      "Subject: laptop showing abstract network security visualization with non-readable shield or connection concept, smartphone nearby, clean premium desk setup\n" +
+      "Style/medium: editorial tech lifestyle photography\n" +
+      "Composition/framing: wide 16:9, laptop as focal point, security and streaming concept balanced\n" +
+      "Lighting/mood: modern, trustworthy, calm, professional\n" +
+      "Constraints: no text, no logos, no watermark, no visible faces, no readable interface elements",
+  },
+  {
+    slug: "djecji-exyu-program-iptv-dijaspora-setup",
+    type: "new",
+    prompt:
+      "Use case: photorealistic-natural\n" +
+      "Asset type: premium family lifestyle blog hero image\n" +
+      "Primary request: children's TV setup for diaspora kids watching Balkan cartoons and programs through IPTV\n" +
+      "Scene/background: bright warm family living room or playroom, daytime, comfortable and safe atmosphere\n" +
+      "Subject: television showing colorful abstract animated content without readable titles, small sofa or floor area with pillows and a remote nearby, no children visible\n" +
+      "Style/medium: editorial family interior photography\n" +
+      "Composition/framing: wide 16:9, cheerful but premium, child-friendly room context with TV\n" +
+      "Lighting/mood: warm, safe, bright, family-friendly and welcoming\n" +
+      "Constraints: no text, no logos, no watermark, no visible faces or children, no readable on-screen content",
+  },
+  {
+    slug: "internet-brzina-iptv-hd-4k-streaming-koliko-mbps",
+    type: "new",
+    prompt:
+      "Use case: photorealistic-natural\n" +
+      "Asset type: premium tech explainer blog hero image\n" +
+      "Primary request: internet speed and 4K streaming quality concept for home IPTV\n" +
+      "Scene/background: modern home with premium router and large television\n" +
+      "Subject: sleek WiFi router in foreground with ethernet cable, television in background showing crystal-clear abstract 4K content, no readable graphics\n" +
+      "Style/medium: editorial consumer-tech photography\n" +
+      "Composition/framing: wide 16:9, router and TV both in frame, speed-and-quality storytelling\n" +
+      "Lighting/mood: clean, precise, modern, premium tech atmosphere\n" +
+      "Constraints: no text, no watermark, no logos, no visible faces, no speed-test graphics or numbers",
+  },
+  {
+    slug: "ex-yu-iptv-holandija-belgija-beneluks-dijaspora",
+    type: "new",
+    prompt:
+      "Use case: photorealistic-natural\n" +
+      "Asset type: premium diaspora blog hero image\n" +
+      "Primary request: Balkan diaspora in the Netherlands or Belgium watching EX-YU IPTV at home\n" +
+      "Scene/background: modern Dutch or Belgian apartment interior with characteristic tall windows and canal or city view outside, evening light\n" +
+      "Subject: television showing warm Balkan channel content in a tasteful European living room, remote and evening setup without readable screen details\n" +
+      "Style/medium: editorial interior lifestyle photography\n" +
+      "Composition/framing: wide 16:9, blend Benelux urban exterior with cozy interior streaming mood\n" +
+      "Lighting/mood: warm inside, blue-dusk outside, premium realistic European evening\n" +
+      "Constraints: no text, no logos, no watermark, no visible faces, no windmill clichés",
+  },
+  {
+    slug: "iptv-racunar-laptop-exyu-kanali-windows-mac",
+    type: "new",
+    prompt:
+      "Use case: photorealistic-natural\n" +
+      "Asset type: premium tech lifestyle blog hero image\n" +
+      "Primary request: watching EX-YU IPTV channels on a laptop or computer at a home desk\n" +
+      "Scene/background: clean modern home desk setup with a premium laptop, evening, soft desk lamp\n" +
+      "Subject: open laptop displaying abstract colorful TV channel content with no readable interface text, headphones nearby, minimal and elegant desk accessories\n" +
+      "Style/medium: editorial tech lifestyle photography\n" +
+      "Composition/framing: wide 16:9, laptop as focal point, home office or study desk context\n" +
+      "Lighting/mood: calm, modern, focused, premium evening desk atmosphere\n" +
+      "Constraints: no text, no logos, no watermark, no visible faces, no readable on-screen UI",
+  },
+  {
+    slug: "iptv-za-roditelje-starije-dijaspora-vodic",
+    type: "new",
+    prompt:
+      "Use case: photorealistic-natural\n" +
+      "Asset type: premium family lifestyle blog hero image\n" +
+      "Primary request: senior-friendly IPTV setup for elderly diaspora family members watching home channels\n" +
+      "Scene/background: warm comfortable living room with traditional but tasteful furnishings, daytime, calm and cozy atmosphere\n" +
+      "Subject: large television with simple visible remote control on an armrest or table, warm domestic living-room setup implying elderly comfort, no people visible\n" +
+      "Style/medium: editorial interior lifestyle photography\n" +
+      "Composition/framing: wide 16:9, TV and comfortable room context, warm and accessible\n" +
+      "Lighting/mood: warm, safe, welcoming, realistic home comfort\n" +
+      "Constraints: no text, no logos, no watermark, no visible faces, no readable channel names",
+  },
+  {
     slug: "ex-yu-iptv-utakmice-uzivo-dijaspora-2026",
     type: "new",
     prompt:
@@ -807,7 +947,12 @@ async function patchMarkdownFrontmatter(post) {
   }
 
   const markdownPath = path.join(CONTENT_DIR, `${post.slug}.md`);
-  let markdown = await readUtf8(markdownPath);
+  let markdown;
+  try {
+    markdown = await readUtf8(markdownPath);
+  } catch {
+    return "no-markdown-file";
+  }
 
   if (/^coverImage:/m.test(markdown)) {
     return "already-present";
