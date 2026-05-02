@@ -19,6 +19,29 @@ export default {
       redirectPath = "/images/blog/apple-tv-ex-yu-iptv-2026-podesavanje.webp";
     }
 
+    if (redirectPath === "/countries" || redirectPath === "/countries/") {
+      redirectPath = "/sve-drzave/";
+    }
+
+    if (redirectPath === "/exyuiptv-kanada" || redirectPath === "/exyuiptv-kanada/") {
+      redirectPath = "/exyuiptv-usa/";
+    }
+
+
+    const seoRedirects = new Map([
+      ["/exyu-iptv-deutschland/", "/exyuiptv-njemacka/"],
+      ["/blog/sta-je-iptv-i-kako-radi/", "/blog/sta-je-iptv/"],
+      ["/blog/tivimate-vs-iptv-smarters-pro-2026/", "/blog/tivimate-setup/"],
+      ["/blog/iptv-lista-kanala-2026/", "/blog/iptv-lista-kanala/"],
+      ["/blog/najbolji-iptv-provider-2026/", "/blog/najbolji-iptv-2026/"],
+      ["/osnovni-paket/", "/narudzba/"],
+      ["/osnovni-paket", "/narudzba/"]
+    ]);
+
+    if (seoRedirects.has(redirectPath)) {
+      redirectPath = seoRedirects.get(redirectPath);
+    }
+
     const hasExtension = /\.[^/]+$/.test(redirectPath);
 
     if (redirectPath !== "/" && !hasExtension && !redirectPath.endsWith("/")) {
@@ -43,11 +66,18 @@ export default {
     const isHomePage = url.pathname === "/";
 
     if (contentType.includes("text/html")) {
+      headers.set("Content-Type", "text/html; charset=UTF-8");
       if (isHomePage) {
         headers.set("Cache-Control", "no-store, max-age=0");
       } else {
         headers.set("Cache-Control", "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400");
       }
+    } else if (contentType.includes("text/css")) {
+      headers.set("Content-Type", "text/css; charset=UTF-8");
+      headers.set("Cache-Control", "public, max-age=31536000, immutable");
+    } else if (contentType.includes("application/javascript") || contentType.includes("text/javascript")) {
+      headers.set("Content-Type", "application/javascript; charset=UTF-8");
+      headers.set("Cache-Control", "public, max-age=31536000, immutable");
     } else if (
       contentType.includes("image/") ||
       contentType.includes("font/") ||
