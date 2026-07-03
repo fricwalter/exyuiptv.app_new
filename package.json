@@ -7,13 +7,14 @@
     "generate:blog-images": "node scripts/generate-blog-images.mjs",
     "fix:encoding": "node scripts/fix-encoding.mjs",
     "fix:diacritics": "node scripts/fix-diacritics.mjs",
+    "fix:copy": "node scripts/fix-main-copy.mjs",
     "verify:encoding": "node scripts/verify-encoding.mjs",
     "seo:fix": "node scripts/fix_seo_exports.mjs",
     "seo:gsc": "node scripts/gsc_seo_fix.mjs && npm run brand:install && npm run fix:encoding && npm run fix:diacritics && npm run seo:fix && npm run verify:encoding",
     "blog:repair-assets": "node scripts/repair_blog_index_assets.mjs",
     "brand:install": "node scripts/install_brand_assets.mjs",
     "dev": "wrangler dev",
-    "deploy": "npm run brand:install && npm run seo:fix && npm run blog:repair-assets && npm run fix:diacritics && npm run verify:encoding && wrangler deploy && node scripts/indexnow.mjs"
+    "deploy": "npm run brand:install && npm run seo:fix && npm run blog:repair-assets && npm run fix:diacritics && npm run fix:copy && npm run verify:encoding && wrangler deploy && node scripts/indexnow.mjs"
   },
   "devDependencies": {
     "wrangler": "^4.87.0"
