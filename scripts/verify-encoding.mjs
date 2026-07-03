@@ -94,6 +94,14 @@ for (const root of roots) {
     if (!skipCopyPatternChecks && strippedDiacritics.some((pattern) => pattern.test(copyText))) {
       failures.push(`${rel}: stripped diacritic word found`);
     }
+    if (isDistPage) {
+      const trustSectionCount = (text.match(/<section class="py-12 bg-stone-950 border-y border-stone-800">[\s\S]*?5\.000\+[\s\S]*?SSL[\s\S]*?garancija povrata novca[\s\S]*?<\/section>/g) || []).length;
+      if (trustSectionCount > 1) failures.push(`${rel}: duplicate trust section found`);
+
+      const testimonialSection = text.match(/<section class="py-20 bg-stone-900">[\s\S]*?\u0160ta ka\u017eu[\s\S]*?<\/section>/)?.[0] || "";
+      const testimonialCardCount = (testimonialSection.match(/<article class="rounded-2xl border border-stone-700 bg-stone-800 p-5 hover:border-blue-500 hover:-translate-y-0\.5 transition">/g) || []).length;
+      if (testimonialCardCount > 6) failures.push(`${rel}: too many testimonial cards found`);
+    }
     if (ext === ".html" && !htmlHasUtf8Meta(text)) {
       warnings.push(`${rel}: missing UTF-8 meta tag`);
     }

@@ -115,6 +115,33 @@ const replacements = [
   [/garancija povrata novca/g, "garancija povrata novca"],
 ];
 
+function removeDuplicateTrustSections(html) {
+  const trustSectionPattern =
+    /<section class="py-12 bg-stone-950 border-y border-stone-800">[\s\S]*?5\.000\+[\s\S]*?SSL[\s\S]*?garancija povrata novca[\s\S]*?<\/section>/g;
+  let seen = false;
+
+  return html.replace(trustSectionPattern, (section) => {
+    if (seen) return "";
+    seen = true;
+    return section;
+  });
+}
+
+function limitTestimonialCards(html) {
+  const sectionPattern =
+    /<section class="py-20 bg-stone-900">[\s\S]*?\u0160ta ka\u017eu[\s\S]*?<\/section>/;
+  const articlePattern =
+    /<article class="rounded-2xl border border-stone-700 bg-stone-800 p-5 hover:border-blue-500 hover:-translate-y-0\.5 transition">[\s\S]*?<\/article>/g;
+
+  return html.replace(sectionPattern, (section) => {
+    let index = 0;
+    return section.replace(articlePattern, (article) => {
+      index += 1;
+      return index <= 6 ? article : "";
+    });
+  });
+}
+
 let changed = 0;
 
 for (const file of files) {
@@ -124,6 +151,9 @@ for (const file of files) {
   for (const [pattern, replacement] of replacements) {
     after = after.replace(pattern, replacement);
   }
+
+  after = removeDuplicateTrustSections(after);
+  after = limitTestimonialCards(after);
 
   if (after !== before) {
     fs.writeFileSync(file, after, "utf8");
