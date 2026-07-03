@@ -6,6 +6,9 @@ TEMPLATE = open('dist/blog/ex-yu-iptv-holandija-belgija-beneluks-dijaspora/index
 
 HEADER_FOOTER = """<!DOCTYPE html><html lang="bs"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="shortcut icon" href="/favicon.ico"><!-- Primary Meta Tags -->"""
 
+def normalize_slug(slug):
+    return slug.strip('/')
+
 def build_post(slug, title, description, category, read_min, date, h1, lead, sections, faq, related):
     blog_schema = json.dumps({
         "@context": "https://schema.org",
@@ -61,9 +64,10 @@ def build_post(slug, title, description, category, read_min, date, h1, lead, sec
 
     related_html = ""
     for r_slug, r_title, r_cat in related:
+        clean_slug = normalize_slug(r_slug)
         related_html += f"""
-              <a href="/blog/{r_slug}/" class="group block bg-stone-800 rounded-xl p-4 border border-stone-700 hover:border-blue-500 transition-all duration-300">
-                <img src="/images/blog/{r_slug}.webp" alt="{r_title}" class="w-full h-32 object-cover rounded-lg mb-3" loading="lazy">
+              <a href="/blog/{clean_slug}/" class="group block bg-stone-800 rounded-xl p-4 border border-stone-700 hover:border-blue-500 transition-all duration-300">
+                <img src="/images/blog/{clean_slug}.webp" alt="{r_title}" class="w-full h-32 object-cover rounded-lg mb-3" loading="lazy">
                 <span class="text-xs text-blue-400 font-medium">{r_cat}</span>
                 <h4 class="text-white font-semibold mt-1 text-sm group-hover:text-blue-400 transition-colors line-clamp-2">{r_title}</h4>
               </a>"""
@@ -366,7 +370,7 @@ html2 = build_post(
     ],
     related=[
         ('android-box-iptv-instalacija', 'Android Box: Kako instalirati i podesiti IPTV', 'Instalacija'),
-        ('apple-tv-ex-yu-iptv-2026-podesavanje/', 'Apple TV i EX-YU IPTV: Kompletno podešavanje', 'Apple'),
+        ('apple-tv-ex-yu-iptv-2026-podesavanje', 'Apple TV i EX-YU IPTV: Kompletno podešavanje', 'Apple'),
         ('iptv-racunar-laptop-exyu-kanali-windows-mac', 'IPTV na računaru i laptopu: Windows i Mac', 'Instalacija'),
     ]
 )

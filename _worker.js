@@ -60,6 +60,20 @@ export default {
       return Response.redirect(url.toString(), 301);
     }
 
+    if (url.pathname === "/sitemap-index.xml") {
+      return new Response(
+        '<?xml version="1.0" encoding="UTF-8"?><sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><sitemap><loc>https://exyuiptv.app/sitemap-0.xml</loc></sitemap></sitemapindex>\n',
+        {
+          headers: {
+            "Content-Type": "application/xml; charset=UTF-8",
+            "Cache-Control": "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400",
+            "Vary": "Accept-Encoding",
+            "X-Edge-Worker": "on"
+          }
+        }
+      );
+    }
+
     const response = await env.ASSETS.fetch(new Request(url.toString(), request));
     const headers = new Headers(response.headers);
     const contentType = headers.get("content-type") || "";

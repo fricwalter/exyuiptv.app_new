@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://exyuiptv.app/sitemap-index.xml
+Sitemap: https://exyuiptv.app/sitemap-0.xml
