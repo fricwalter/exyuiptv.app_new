@@ -1,9 +1,0 @@
-{
-  "mcpServers": {
-    "hindsight": {
-      "type": "http",
-      "url": "https://api.hindsight.vectorize.io/mcp/hermes",
-      "note": "Token wird via HINDSIGHT_TOKEN Env-Variable oder localem claude.json gesetzt (nicht im Repo)"
-    }
-  }
-}

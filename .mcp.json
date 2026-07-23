@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "hindsight": {
+      "type": "http",
+      "url": "https://api.hindsight.vectorize.io/mcp/hermes"
+    }
+  }
+}
